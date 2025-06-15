@@ -1,35 +1,59 @@
-class Node {
-    int value;
-    Node left, right;
+class TreeNode {
+    int val;
+    TreeNode left, right;
 
-    Node(int item) {
-        value = item;
-        left = right = null;
+    TreeNode(int val) {
+        this.val = val;
     }
 }
-public class TreeNode {
-    Node root;
 
+public class BinaryTreeTraversals {
+    TreeNode root;
 
-    void inorder(Node node) {
-        if (node != null) {
-            inorder(node.left);
-            System.out.print(node.value + " ");
-            inorder(node.right);
-        }
+    public void buildSampleTree() {
+        root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+    }
+
+    public void preorder(TreeNode node) {
+        if (node == null) return;
+        System.out.print(node.val + " ");
+        preorder(node.left);
+        preorder(node.right);
+    }
+
+    public void inorder(TreeNode node) {
+        if (node == null) return;
+        inorder(node.left);
+        System.out.print(node.val + " ");
+        inorder(node.right);
+    }
+
+    public void postorder(TreeNode node) {
+        if (node == null) return;
+        postorder(node.left);
+        postorder(node.right);
+        System.out.print(node.val + " ");
     }
 
     public static void main(String[] args) {
-        TreeNode tree = new TreeNode();
+        BinaryTreeTraversals tree = new BinaryTreeTraversals();
+        tree.buildSampleTree();
 
-        tree.root = new Node(1);
-        tree.root.left = new Node(2);
-        tree.root.right = new Node(3);
-        tree.root.left.left = new Node(4);
-        tree.root.left.right = new Node(5);
+        System.out.print("Preorder Traversal: ");
+        tree.preorder(tree.root);
+        System.out.println();
 
-        System.out.print("Inorder traversal: ");
+        System.out.print("Inorder Traversal: ");
         tree.inorder(tree.root);
+        System.out.println();
+
+        System.out.print("Postorder Traversal: ");
+        tree.postorder(tree.root);
+        System.out.println();
     }
 }
 
